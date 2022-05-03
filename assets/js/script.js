@@ -60,10 +60,3 @@ function likeAnswer(e){
     
 }
 
-
-if(document.querySelector("#create-topic")){
-
-    document.querySelector("#create-topic").addEventListener('click',function(){
-        
-    })
-}

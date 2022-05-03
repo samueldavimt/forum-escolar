@@ -8,7 +8,10 @@
 
 :root{
    --general-color: #0078d4;
+   --border-color-1: #d2dce3;
+   --border-color-2: #ebf2f7;
 }
+
 
 input{
     outline: none;
