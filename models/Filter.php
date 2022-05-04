@@ -3,7 +3,7 @@
 class Filter{
 
     public function input($input){
-
+        
         $input = strip_tags($input);
         $input = filter_var($input, FILTER_SANITIZE_SPECIAL_CHARS);
         return $input;

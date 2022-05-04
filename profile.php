@@ -4,12 +4,15 @@ require_once("config/globals.php");
 require_once("models/Auth.php");
 require_once("dao/TopicDaoMysql.php");
 require_once("dao/UserDaoMysql.php");
+require_once("dao/AnswerDaoMysql.php");
 require_once("models/Filter.php");
 require_once("models/Redirect.php");
 
 $auth = new Auth($pdo, $base);
 $userDao = new UserDaoMysql($pdo);
+$answerDao = new AnswerDaoMysql($pdo);
 $topicDao = new TopicDaoMysql($pdo);
+$answerLikeDao = new AnswerLikeDaoMysql ($pdo);
 $filter = new Filter();
 
 $userInfo = $auth->checkToken(true);
@@ -27,6 +30,8 @@ if(!$currentUser){
 }
 
 $userTopics = $topicDao->getTopicsFrom($currentUser->id);
+$userAnswers = $answerDao->getAnswersFrom($currentUser->id);
+$currentUser->countLikes = count($answerLikeDao->getAllLikesFrom($currentUser->id));
 
 // echo "<pre>";
 // print_r($currentUser);
@@ -60,7 +65,7 @@ require_once("partials/header.php");
                     </div>
 
                     <div>
-                        <p><?=count($currentUser->answers)?></p>
+                        <p><?=count($userAnswers)?></p>
                         <p>Respostas</p>
                     </div>
 

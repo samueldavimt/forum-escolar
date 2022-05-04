@@ -4,5 +4,6 @@
     <script src="<?=$base?>assets/js/script.js"></script>
     <script src="<?=$base?>assets/js/signup.js"></script>
     <script src="<?=$base?>assets/js/newTopic.js"></script>
+    <script src="<?=$base?>assets/js/newAnswer.js"></script>
 </body>
 </html>

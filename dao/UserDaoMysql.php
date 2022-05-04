@@ -1,9 +1,7 @@
 <?php
 
 require_once("models/User.php");
-require_once("dao/TopicLikeDaoMysql.php");
-require_once("dao/AnswerDaoMysql.php");
-
+require_once("dao/AnswerLikeDaoMysql.php");
 
 class UserDaoMysql implements UserDao{
 
@@ -26,12 +24,6 @@ class UserDaoMysql implements UserDao{
         $user->shift = $data['shift'];
         $user->created_at = $data['created_at'];
         $user->token = $data['token'];
-
-        $topicLikeDao = new TopicLikeDaoMysql($this->pdo);
-        $answerDao = new AnswerDaoMysql($this->pdo);
-
-        $user->countLikes = count($topicLikeDao->getAllLikesFrom($user->id));
-        $user->answers = $answerDao->getAnswersFrom($user->id);
 
         return $user;
     }

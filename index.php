@@ -27,7 +27,7 @@ require_once("partials/submenu_mobile.php");
     <?php require_once("partials/categories.php")?>
 
     <section class="topics">
-
+    
     <?php foreach($topicsHome as $topicItemPreview):?>
         <?php require("partials/topic_item_preview.php")?>
     <?php endforeach?>

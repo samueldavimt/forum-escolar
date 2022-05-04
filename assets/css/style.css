@@ -224,6 +224,11 @@ header .dropdown-action span{
     max-width: 1020px;
 }
 
+.topic-item-preview .count-answers i, .topic-item-states i{
+    margin-right: 8px;
+    color: var(--general-color);
+}
+
 .topic-item .topic-item-states span:nth-child(1){
     margin-right: 15px;
     display: inline-block;
@@ -284,8 +289,9 @@ header .dropdown-action span{
 }
 
 
+
 #like-answer span{
-    margin-left: 10px;
+    margin-left: 5px;
     display: inline-block;
     position: relative;
     top: -2px;
@@ -324,15 +330,17 @@ header .dropdown-action span{
     transition: 0.3s;
 }
 
-.write-answer div[contenteditable="true"]{
+.write-answer div[contenteditable="true"], .write-answer textarea{
     margin-top: 15px;
     border: none;
     border: 2px solid #d2dce3;
     outline: none;
     padding: 10px 15px;
     border-radius: 5px;
-    width: calc(100% - 200px);
+    width: calc(100% - 150px);
+    margin-bottom: 15px;
     min-height: 150px;
+    resize: none;
 }
 
 .write-answer button{
@@ -360,6 +368,12 @@ header .dropdown-action span{
     margin-left: 10px;
     font-size: 15px;
     font-weight: bold;
+}
+
+
+#button-delete-answer{
+    padding: 5px;
+    margin: 0px 5px;
 }
 
 .pagination-menu{
@@ -441,7 +455,7 @@ header .dropdown-action span{
 .profile-body .info-user{
     border: 2px solid #ebf2f7;
     padding: 10px;
-    width: 190px;
+    width: 220px;
     height: max-content;
     border-radius: 5px;
     margin-right: 50px;

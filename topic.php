@@ -10,6 +10,7 @@ require_once("models/Redirect.php");
 
 $auth = new Auth($pdo, $base);
 $topicDao = new TopicDaoMysql($pdo);
+$answerDao = new AnswerDaoMysql($pdo);
 $filter = new Filter();
 
 $userInfo = $auth->checkToken(true);
@@ -20,10 +21,15 @@ if(isset($_GET['id'])){
 
 $topicItem = $topicDao->findById($topicId);
 
+
 if(!$topicItem){
     Redirect::local($base, "index.php");
 }
 
+
+// echo "<pre>";
+// print_r($topicItem);
+// echo "</pre>";
 
 require_once("partials/header.php");
 ?>

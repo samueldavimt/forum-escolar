@@ -8,7 +8,7 @@ class Auth{
     public $pdo;
     public $base;
 
-    public function __construct($pdo, $base){
+    public function __construct($pdo, $base=false){
         $this->pdo = $pdo;
         $this->base = $base;
         $this->userDao = new UserDaoMysql($pdo);

@@ -13,14 +13,14 @@ if($topicItemPreview->state == "Concluído"){
         <div class="topic-item-info">
             <div class="user-avatar" style="background-image: url('<?=$base?>media/avatars/<?=$topicItemPreview->user->avatar?>');"></div>
             <div>
-                <a href="<?=$base?>profile.php?id=<?=$topicItemPreview->user->id?>" class="username"><?=$topicItemPreview->user->name?></a>
-                <p class="short-info"><?=$topicItemPreview->category?>  - <?=$topicItemPreview->user->grade?>ºano</p>
+                <a href="<?=$base?>profile.php?id=<?=$topicItemPreview->user->id?>" class="username"><?=$topicItemPreview->user->shortName()?></a>
+                <p class="short-info"><?=$topicItemPreview->category?>  - <?=$topicItemPreview->user->grade?>ºano <?=$topicItemPreview->replyDate()?></p>
             </div>
         </div>
 
         <div class="topic-item-states">
             <span class="state <?=$stateStyle?>"><?=$topicItemPreview->state?></span>
-            <span class="count-answers"><i class="bi bi-journal-check"></i> <span><?=count($topicItemPreview->answers)?></span> Respostas</span>
+            <span class="count-answers"><i class="bi bi-chat-dots-fill"></i><span><?=count($topicItemPreview->answers)?></span> Respostas</span>
         </div>
     </div>
     

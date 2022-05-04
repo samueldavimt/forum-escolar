@@ -1,6 +1,6 @@
 <?php
 
-class TopicLike{
+class AnswerLike{
 
     public $id;
     public $id_user;
@@ -9,6 +9,6 @@ class TopicLike{
 
 }
 
-interface TopicLikeDao{
+interface AnswerLikeDao{
     
 }

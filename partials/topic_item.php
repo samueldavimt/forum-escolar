@@ -5,12 +5,12 @@
             <div class="user-avatar" style="background-image: url('<?=$base?>media/avatars/<?=$topicItem->user->avatar?>');"></div>
             <div>
                 <a href="" class="username"><?=$topicItem->user->name?></a>
-                <p><?=$topicItem->category?>  - <?=$topicItem->user->grade?>ºano</p>
+                <p><?=$topicItem->category?>  - <?=$topicItem->user->grade?> ºano <?=$topicItem->replyDate()?></p>
             </div>
         </div>
 
         <span class="topic-item-states">
-            <span><i class="bi bi-journal-check"></i>
+            <span><i class="bi bi-chat-dots-fill"></i>
 
                 <?php if(count($topicItem->answers) > 0):?>
                     Respondido
@@ -29,17 +29,16 @@
 
     <div class="answer-topic">
         <div class="topic-actions">
-            <span id="answer" class="btn btn-primary">Responder</span>
-
-            
+            <span id="answer" class="btn btn-primary">Responder</span>   
             <span><abbr title="Denunciar"><i class="bi bi-flag-fill"></i></abbr></span>
-
         </div>
 
         <div class="write-answer hide-write-answer">
-            <div contenteditable="true">
+            <!-- <div contenteditable="true" id="content-answer">
                 Digite aqui ...
-            </div>
+            </div> -->
+
+            <textarea id="content-answer"></textarea>
 
             <button id="send-answer" type="button" class="btn btn-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
