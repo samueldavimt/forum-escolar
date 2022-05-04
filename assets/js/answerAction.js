@@ -31,7 +31,7 @@ function confirmDeletion(e){
     form = new FormData();
     form.append("id_answer", idAnswer);
 
-    fetch("answer_delete.php",{
+    fetch("answer_delete_action.php",{
         method: "POST",
         body: form
     }).then(res => res.json())

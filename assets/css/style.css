@@ -283,6 +283,12 @@ header .dropdown-action span{
     cursor: pointer;
 }
 
+#completed-topic{
+    margin-right: 5px;
+    color: #06bd06;
+    font-size: 18.5px;
+    padding: 10px;
+}
 
 #like-answer {
     color: red;

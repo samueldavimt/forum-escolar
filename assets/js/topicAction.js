@@ -7,6 +7,28 @@ if(document.querySelector(".form-create-topic")){
     })
 }
 
+if(document.querySelector("#completed-topic")){
+
+    buttonCompleteTopic = document.querySelector("#completed-topic");
+    buttonCompleteTopic.addEventListener("click",completeTopic)
+}
+
+function completeTopic(e){
+
+    topicId = e.currentTarget.closest(".topic-item").dataset.id;
+    
+    form = new FormData();
+    form.append("topic_id", topicId);
+
+    fetch("topic_state_action.php",{
+        method:"POST",
+        body: form
+    })
+    .then(()=>{
+        window.location.reload();
+    })
+}
+
 function sendFormTopic(form){
   
     fetch("topic_action.php",{

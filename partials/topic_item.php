@@ -30,7 +30,20 @@
     <div class="answer-topic">
         <div class="topic-actions">
             <span id="answer" class="btn btn-primary">Responder</span>   
-            <span><abbr title="Denunciar"><i class="bi bi-flag-fill"></i></abbr></span>
+            <div>
+                <?php if($topicItem->mine):?>
+                    <abbr title="Tópico Concluído">
+                        <?php if($topicItem->state == "Concluído"):?>
+                            <i id="completed-topic" class="bi bi-check-circle-fill"></i>
+                        <?php else:?>
+                            <i id="completed-topic" class="bi bi-check-circle"></i>
+                        <?php endif?>
+                    </abbr>
+                <?php endif?>
+                <span><abbr title="Denunciar"><i class="bi bi-flag-fill"></i></abbr></span>
+                
+            </div>
+            
         </div>
 
         <div class="write-answer hide-write-answer">

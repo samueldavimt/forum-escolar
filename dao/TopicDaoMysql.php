@@ -1,6 +1,7 @@
 <?php
 
 require_once("models/Topic.php");
+require_once("models/Auth.php");
 require_once("dao/UserDaoMysql.php");
 require_once("dao/AnswerDaoMysql.php");
 
@@ -25,9 +26,18 @@ class TopicDaoMysql implements TopicDao{
 
         $userDao = new UserDaoMysql($this->pdo);
         $answerDao = new AnswerDaoMysql($this->pdo);
+        $auth = new Auth($this->pdo, false);
+
+        $currentUser = $auth->checkToken(false);
 
         $topic->user = $userDao->findById($topic->id_user);
         $topic->answers = $answerDao->getAnswersByTopic($topic->id);
+
+        if($currentUser->id == $topic->id_user){
+            $topic->mine = true;
+        }else{
+            $topic->mine = false;
+        }
 
 
         return $topic;
@@ -103,6 +113,14 @@ class TopicDaoMysql implements TopicDao{
         $stmt->execute();
 
         return $this->pdo->lastInsertId();
+    }
+
+    public function updateState($topic_id, $state){
+
+        $stmt = $this->pdo->prepare("UPDATE topics SET state=:state WHERE id=:id");
+        $stmt->bindValue(":state",$state);
+        $stmt->bindValue(":id",$topic_id);
+        $stmt->execute();
     }
 
 
