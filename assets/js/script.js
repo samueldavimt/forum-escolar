@@ -31,32 +31,3 @@ function writeAnswer(){
 }
 
 
-if(document.querySelector("#like-answer")){
-
-    document.querySelectorAll("#like-answer").forEach(buttonLike =>{
-        buttonLike.addEventListener("click",likeAnswer)
-    })
-}
-
-
-function likeAnswer(e){
-
-    iconLike = e.currentTarget.querySelector('i')
-    countLike = e.currentTarget.querySelector(".count-like")
-
-    if(iconLike.classList.contains('bi-heart')){
-        iconLike.classList.remove('bi-heart')
-        iconLike.classList.add('bi-heart-fill')
-
-        countLike.innerHTML = parseInt(countLike.innerHTML) + 1
-
-    }else{
-        iconLike.classList.add('bi-heart')
-        iconLike.classList.remove('bi-heart-fill')
-        countLike.innerHTML = parseInt(countLike.innerHTML) - 1
-
-    }
-
-    
-}
-

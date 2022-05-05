@@ -89,4 +89,19 @@ class AnswerLikeDaoMysql implements AnswerLikeDao{
 
         return false; 
     }
+
+    public function likeToggle(AnswerLike $aLike){
+
+        if($this->isLiked($aLike->id_answer, $aLike->id_user)){
+            $stmt = $this->pdo->prepare("DELETE FROM answer_likes WHERE id_user=:id_user AND id_answer=:id_answer");
+    
+        }else{
+            $stmt = $this->pdo->prepare("INSERT INTO answer_likes (id_user, id_answer, created_at) VALUES (:id_user, :id_answer, :created_at)");
+            $stmt->bindValue(":created_at",$aLike->created_at);
+        }
+
+        $stmt->bindValue(":id_user",$aLike->id_user);
+        $stmt->bindValue(":id_answer",$aLike->id_answer);
+        $stmt->execute();
+    }
 }

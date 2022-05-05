@@ -83,3 +83,40 @@ function sendFormAnswer(form){
 
     
 }
+
+if(document.querySelector("#like-answer")){
+
+    document.querySelectorAll("#like-answer").forEach(buttonLike =>{
+        buttonLike.addEventListener("click",likeAnswer)
+    })
+}
+
+
+function likeAnswer(e){
+
+    iconLike = e.currentTarget.querySelector('i');
+    countLike = e.currentTarget.querySelector(".count-like");
+    answerId = e.currentTarget.closest(".answer-item").dataset.id;
+
+    if(iconLike.classList.contains('bi-heart')){
+        iconLike.classList.remove('bi-heart')
+        iconLike.classList.add('bi-heart-fill')
+
+        countLike.innerHTML = parseInt(countLike.innerHTML) + 1
+
+    }else{
+        iconLike.classList.add('bi-heart')
+        iconLike.classList.remove('bi-heart-fill')
+        countLike.innerHTML = parseInt(countLike.innerHTML) - 1
+    }
+
+    form = new FormData();
+    form.append("id_answer", answerId);
+
+    fetch("answer_like_action.php",{
+        method: "POST",
+        body: form
+    })
+
+    
+}

@@ -44,7 +44,7 @@
             <?php if($answerItem->isLiked):?>
                 <i class="bi bi-heart-fill liked"></i>
             <?php else:?>
-                <i class="bi bi-heart liked"></i>
+                <i id="answer-like" class="bi bi-heart liked"></i>
             <?php endif?>
             <span class="count-like"><?=$answerItem->countLikes?></span>
         </button>

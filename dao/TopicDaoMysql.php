@@ -64,12 +64,22 @@ class TopicDaoMysql implements TopicDao{
         return $topics; 
     }
 
-    public function getTopicsHome(){
+    public function getTopicsHome($page=1){
 
-        $stmt = $this->pdo->prepare("SELECT * FROM topics ORDER BY created_at DESC");
-        $stmt->execute();
+        $perPage = 3;
+        $pageOffset = 0;
 
-        $topics = [];
+        if(is_numeric($page)){
+            $pageOffset = ceil(($page - 1) * 3);
+        }
+       
+        if(!isset($pageOffset) || $pageOffset < 0){
+            $pageOffset = 0;
+        }
+
+        $stmt = $this->pdo->query("SELECT * FROM topics ORDER BY created_at DESC LIMIT $pageOffset, $perPage");
+
+        $topicsInfo = [];
 
         if($stmt->rowCount() > 0){
 
@@ -77,11 +87,18 @@ class TopicDaoMysql implements TopicDao{
             foreach($data as $topicItem){
 
                 $topic = $this->buildTopic($topicItem);
-                $topics[] = $topic;   
+                $topicsInfo['topics'][] = $topic;   
             }
         }
 
-        return $topics;
+        $stmt = $this->pdo->query("SELECT * FROM topics");
+
+        $allTopics = count($stmt->fetchAll(PDO::FETCH_ASSOC));
+        $numPages = ceil($allTopics / $perPage);
+
+        $topicsInfo['pages'] = $numPages;
+
+        return $topicsInfo;
     }
 
     public function findById($id){
