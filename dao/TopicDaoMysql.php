@@ -66,7 +66,7 @@ class TopicDaoMysql implements TopicDao{
 
     public function getTopicsHome($page=1){
 
-        $perPage = 3;
+        $perPage = 5;
         $pageOffset = 0;
 
         if(is_numeric($page)){
@@ -80,6 +80,7 @@ class TopicDaoMysql implements TopicDao{
         $stmt = $this->pdo->query("SELECT * FROM topics ORDER BY created_at DESC LIMIT $pageOffset, $perPage");
 
         $topicsInfo = [];
+        $topicsInfo['topics'] = [];
 
         if($stmt->rowCount() > 0){
 

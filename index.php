@@ -26,9 +26,7 @@ $topicsInfo = $topicDao->getTopicsHome($currentPage);
 $totalPages = $topicsInfo['pages'];
 $topicsHome = $topicsInfo['topics'];
 
-if(!$topicsHome){
-    Redirect::local($base, "");
-}
+
 
 $previusPage = $currentPage - 1;
 if($previusPage < 1){
@@ -57,7 +55,9 @@ require_once("partials/submenu_mobile.php");
     <?php foreach($topicsHome as $topicItemPreview):?>
         <?php require("partials/topic_item_preview.php")?>
     <?php endforeach?>
-
+    <?php if(!$topicsHome):?>
+        <h3>Nenhum Tópico Encontrado!</h3>
+    <?php endif?>
 
         <nav class="pagination-menu" aria-label="Page navigation example">
             <ul class="pagination">

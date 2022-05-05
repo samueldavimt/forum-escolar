@@ -81,7 +81,11 @@ function insertNewTopic(info){
 
     info.content_topic = info.content_topic.replaceAll('&#13;', "<br>");
     
-    topicItem = document.querySelector(".topic-item-preview").cloneNode(true);
+    try{
+        topicItem = document.querySelector(".topic-item-preview").cloneNode(true);
+    }catch(e){
+        window.location.reload();
+    }
     
     topicItem.querySelector(".user-avatar").style = `background-image: url('${info.user_avatar}')`;
 
