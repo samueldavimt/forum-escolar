@@ -21,7 +21,6 @@ if(isset($_GET['id'])){
 
 $topicItem = $topicDao->findById($topicId);
 
-
 if(!$topicItem){
     Redirect::local($base, "index.php");
 }

@@ -1,3 +1,11 @@
+if(document.querySelector("#confirmDeletionTopic")){
+    document.querySelector("#confirmDeletionTopic").addEventListener("click", confirmDeletionTopic)
+}
+
+if(document.querySelector("#delete-topic")){
+    document.querySelector("#delete-topic").addEventListener("click", buildTopicDeletetion)
+}
+
 if(document.querySelector(".form-create-topic")){
 
     formCreateTopic = document.querySelector(".form-create-topic");
@@ -11,6 +19,26 @@ if(document.querySelector("#completed-topic")){
 
     buttonCompleteTopic = document.querySelector("#completed-topic");
     buttonCompleteTopic.addEventListener("click",completeTopic)
+}
+
+function buildTopicDeletetion(e){
+    topicId = e.currentTarget.closest(".topic-item").dataset.id;
+    modalDeleteTopic = document.querySelector("#modalDeleteTopic");
+    modalDeleteTopic.dataset.id = topicId;
+    
+}
+
+function confirmDeletionTopic(e){
+    topicId = e.currentTarget.closest("#modalDeleteTopic").dataset.id;
+    form = new FormData();
+    form.append("topic_id", topicId);
+
+    fetch("topic_delete_action.php",{
+        method: "POST",
+        body: form
+    }).then(()=>{
+       window.location.reload();
+    })
 }
 
 function completeTopic(e){

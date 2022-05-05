@@ -34,11 +34,9 @@ function confirmDeletion(e){
     fetch("answer_delete_action.php",{
         method: "POST",
         body: form
-    }).then(res => res.json())
-      .then(function(json){
-
+    }).then(()=>{
         window.location.reload();
-      })
+    })
 
 }
 

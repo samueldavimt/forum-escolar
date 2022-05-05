@@ -38,21 +38,19 @@ class AnswerLikeDaoMysql implements AnswerLikeDao{
         $answersListIds = implode(", ",$answersListIds);
         $answerLikes = [];
 
-        if(strlen($answersListIds) < 1){
-            return $answerLikes;
+        if(strlen($answersListIds) > 0){
+            $stmt = $this->pdo->query("SELECT * FROM answer_likes WHERE id_answer IN ($answersListIds)");
+
+            if($stmt->rowCount() > 0){
+                $data = $stmt->fetchAll();
+                foreach($data as $answerLikeItem){
+                    $answerLike = $this->buildAnswerLike($answerLikeItem);
+    
+                    $answerLikes[] = $answerLike;
+                }
+            }          
         }
 
-        $stmt = $this->pdo->query("SELECT * FROM answer_likes WHERE id_answer IN ($answersListIds)");
-
-
-        if($stmt->rowCount() > 0){
-            $data = $stmt->fetchAll();
-            foreach($data as $answerLikeItem){
-                $answerLike = $this->buildAnswerLike($answerLikeItem);
-
-                $answerLikes[] = $answerLike;
-            }
-        }
 
         return $answerLikes;
     }

@@ -115,7 +115,7 @@ header .dropdown-action span{
 
 
 .main .aside{
-    max-width: 220px;
+    max-width: 250px;
     margin-left: 50px;
     padding: 5px 15px;
     border: 2px solid #ebf2f7;
@@ -212,6 +212,7 @@ header .dropdown-action span{
 .discussion .topic-item{
     margin-bottom: 60px;
 }
+
 .topic-item, .answer-item{
     display: flex;
     width: 100%;
@@ -221,7 +222,7 @@ header .dropdown-action span{
     border-radius: 8px;
     padding: 20px;
     border: 2px solid #ebf2f7;
-    max-width: 1020px;
+    max-width: 1000px;
 }
 
 .topic-item-preview .count-answers i, .topic-item-states i{
@@ -232,6 +233,11 @@ header .dropdown-action span{
 .topic-item .topic-item-states span:nth-child(1){
     margin-right: 15px;
     display: inline-block;
+}
+
+abbr{
+    color: transparent;
+    background-color: transparent;
 }
 
 .open{
@@ -285,7 +291,7 @@ header .dropdown-action span{
 
 #completed-topic{
     margin-right: 5px;
-    color: #06bd06;
+    color: #06bd06 !important;
     font-size: 18.5px;
     padding: 10px;
 }
@@ -317,6 +323,15 @@ header .dropdown-action span{
 }
 
 
+.topic-actions i{
+    padding: 5px;
+    margin: 0px 5px;
+    color: black;
+}
+
+#delete-topic{
+    color: red !important;
+}
 .write-answer{
     margin-top: 15px;
     display: flex;

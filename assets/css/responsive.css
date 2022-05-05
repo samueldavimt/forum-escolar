@@ -108,6 +108,10 @@
         margin: 0px 20px !important;
     }
 
+    #content-answer{
+        width: 100%;
+    }
+
 }
 
 
@@ -131,6 +135,7 @@
     .profile-head-actions div{
         margin: 0px 30px !important;
     }
+
 }
 
 @media (max-width:576px){
@@ -185,4 +190,5 @@
         width: 95% !important;
         margin-top:100px !important
     }
+
 }

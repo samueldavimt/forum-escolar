@@ -123,5 +123,11 @@ class TopicDaoMysql implements TopicDao{
         $stmt->execute();
     }
 
+    public function delete($id){
+        $stmt = $this->pdo->prepare("DELETE FROM topics WHERE id=:id");
+
+        $stmt->bindValue(":id",$id);
+        $stmt->execute();
+    }
 
 }

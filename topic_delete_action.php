@@ -1,6 +1,6 @@
 <?php
 
-
+require_once("dao/AnswerDaoMysql.php");
 require_once("config/globals.php");
 require_once("dao/TopicDaoMysql.php");
 require_once("models/Auth.php");
@@ -8,6 +8,7 @@ require_once("models/Filter.php");
 
 $auth = new Auth($pdo, $base);
 $topicDao = new TopicDaoMysql($pdo);
+$answerDao = new AnswerDaoMysql($pdo);
 $filter = new Filter();
 
 $userInfo = $auth->checkToken(true);
@@ -20,10 +21,7 @@ if($currentTopic){
 
     if($userInfo->id == $currentTopic->id_user){
         
-        if($currentTopic->state == "Aberto"){
-            $topicDao->updateState($topicId, "Concluído");
-        }else{
-            $topicDao->updateState($topicId, "Aberto");
-        }
+        $topicDao->delete($topicId);
+        $answerDao->deleteAllAnswersByTopic($topicId);
     }
 }

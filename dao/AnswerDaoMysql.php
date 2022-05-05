@@ -119,11 +119,17 @@ class AnswerDaoMysql implements AnswerDao{
     }
 
     public function delete($id){
-
         $stmt = $this->pdo->prepare("DELETE FROM answers WHERE id=:id");
+
         $stmt->bindValue(":id",$id);
         $stmt->execute();
     }
     
+    public function deleteAllAnswersByTopic($id_topic){
+        $stmt = $this->pdo->prepare("DELETE FROM answers WHERE id_topic=:id_topic");
+
+        $stmt->bindValue(":id_topic",$id_topic);
+        $stmt->execute();
+    }
 
 }
