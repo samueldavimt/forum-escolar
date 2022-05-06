@@ -19,6 +19,7 @@ if($email && $password){
         
         $auth = new Auth($pdo, $base);
         $auth->validateLogin($email, $password);
+        unset($_SESSION['message']);
 
     }
 }

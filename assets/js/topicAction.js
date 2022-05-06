@@ -78,8 +78,6 @@ function sendFormTopic(form){
 function insertNewTopic(info){
 
     containerTopic = document.querySelector(".topics");
-
-    info.content_topic = info.content_topic.replaceAll('&#13;', "<br>");
     
     try{
         topicItem = document.querySelector(".topic-item-preview").cloneNode(true);
@@ -87,19 +85,15 @@ function insertNewTopic(info){
         window.location.reload();
     }
     
-    topicItem.querySelector(".user-avatar").style = `background-image: url('${info.user_avatar}')`;
+    info.content_topic = info.content_topic.replaceAll('&#13;', "<br>");
 
+    topicItem.querySelector(".user-avatar").style = `background-image: url('${info.user_avatar}')`;
     topicItem.querySelector(".username").innerHTML = info.user_name;
     topicItem.querySelector(".username").href = info.user_profile;
-
     topicItem.querySelector(".short-info").innerHTML = `${info.category_topic} - ${info.user_grade}ºano`;
-
     topicItem.querySelector(".state").innerHTML = info.state_topic;
-
     topicItem.querySelector(".count-answers span").innerHTML = info.count_answers;
-
     topicItem.querySelector(".topic-subject").innerHTML = info.content_topic;
-
     topicItem.querySelector(".answer-topic a").href = info.answer_topic;
 
     containerTopic.prepend(topicItem)

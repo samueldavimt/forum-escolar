@@ -622,3 +622,23 @@ abbr{
     opacity: 0;
     transition: 0.2s;
 }
+
+.user-settings{
+    width: 100%;
+}
+.form-user-settings{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap-reverse;
+}
+
+.edit-info-user, .edit-reset-password{
+    margin: 0px 20px;
+    flex: 1 0 400px;
+    max-width: 600px;
+}
+
+.edit-reset-password{
+    max-width: 500px;
+}
