@@ -47,7 +47,7 @@ if($category && $content){
         
         "user_id"      => $currentTopic->id_user,
         "user_avatar"  => $base . "media/avatars/" . $currentTopic->user->avatar,
-        "user_name"    => $currentTopic->user->name,
+        "user_name"    => $currentTopic->user->shortName(),
         "user_grade"   => $currentTopic->user->grade,
         "user_profile" => $base . "profile.php?id=" . $currentTopic->user->id
     ];

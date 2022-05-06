@@ -225,6 +225,11 @@ header .dropdown-action span{
     max-width: 1000px;
 }
 
+.topic-item-states{
+    text-align: right;
+}
+
+.topic-ite
 .topic-item-preview .count-answers i, .topic-item-states i{
     margin-right: 8px;
     color: var(--general-color);
@@ -448,6 +453,7 @@ abbr{
 
 .profile-head-actions{
     display: flex;
+    flex-wrap: wrap;
 }
 
 .profile-head-actions div{
@@ -637,6 +643,7 @@ abbr{
     margin: 0px 20px;
     flex: 1 0 400px;
     max-width: 600px;
+    padding: 20px;
 }
 
 .edit-reset-password{

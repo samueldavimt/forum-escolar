@@ -53,7 +53,7 @@ require_once("partials/header.php");
                     <div class="user-avatar" style="background-image: url('<?=$base?>media/avatars/<?=$userInfo->avatar?>');"></div>
                     
                     <div>
-                        <div class="username"><?=$currentUser->shortName()?></div>
+                        <div class="username"><?=$currentUser->name?></div>
                         <p><?=$currentUser->shift?>  - <?=$currentUser->grade?>ºano</p>
                     </div>
                 </div>

@@ -14,7 +14,7 @@ if($topicItemPreview->state == "Concluído"){
             <div class="user-avatar" style="background-image: url('<?=$base?>media/avatars/<?=$topicItemPreview->user->avatar?>');"></div>
             <div>
                 <a href="<?=$base?>profile.php?id=<?=$topicItemPreview->user->id?>" class="username"><?=$topicItemPreview->user->shortName()?></a>
-                <p class="short-info"><?=$topicItemPreview->category?>  - <?=$topicItemPreview->user->grade?>ºano <?=$topicItemPreview->replyDate()?></p>
+                <p class="short-info"><?=$topicItemPreview->category?>  - <?=$topicItemPreview->user->grade?>ºano <span id="replyDate"><?=$topicItemPreview->replyDate()?></span></p>
             </div>
         </div>
 

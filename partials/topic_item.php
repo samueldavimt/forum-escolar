@@ -23,13 +23,14 @@
         <div class="topic-item-info">
             <div class="user-avatar" style="background-image: url('<?=$base?>media/avatars/<?=$topicItem->user->avatar?>');"></div>
             <div>
-                <a href="" class="username"><?=$topicItem->user->name?></a>
-                <p><?=$topicItem->category?>  - <?=$topicItem->user->grade?> ºano <?=$topicItem->replyDate()?></p>
+                <a href="<?=$base?>profile.php?id=<?=$topicItem->user->id?>" class="username"><?=$topicItem->user->shortName()?></a>
+                <p><?=$topicItem->category?>  - <?=$topicItem->user->grade?> ºano <span id="replyDate"><?=$topicItem->replyDate()?></span></p>
             </div>
         </div>
 
         <span class="topic-item-states">
-            <span><i class="bi bi-chat-dots-fill"></i>
+        <i class="bi bi-chat-dots-fill"></i>
+            <span>
 
                 <?php if(count($topicItem->answers) > 0):?>
                     Respondido

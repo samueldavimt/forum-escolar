@@ -23,7 +23,7 @@
         <div class="answer-item-info topic-item-info">
             <div class="user-avatar" style="background-image: url('<?=$base?>media/avatars/<?=$answerItem->user->avatar?>');"></div>
             <div>
-                <a href="" class="username"><?=$answerItem->user->shortName()?></a>
+                <a href="<?=$base?>profile.php?id=<?=$answerItem->user->id?>" class="username"><?=$answerItem->user->shortName()?></a>
                 <p><?=$answerItem->user->shift?>  - <?=$answerItem->user->grade?>ºano</p>
             </div>
         </div>
