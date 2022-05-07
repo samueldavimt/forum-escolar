@@ -147,7 +147,7 @@
     .info-user li{
         font-size: 14px;
     }
-    .answer-item-actions, .answer-item-actions button, .answer-topic span{
+    .answer-item-actios, .answer-item-actions button, .answer-topic span{
         font-size: 14px !important;
     }
     .topic-item-content, .answer-item-content{
@@ -228,7 +228,15 @@
 
     #replyDate{
         display: none !important;
-        color: red;
+    }
+
+    .topic-item .user-avatar, .answer-item .user-avatar{
+        width: 35px !important;
+        height: 35px !important;
+    }
+
+    .answer-item .topic-item-states {
+        font-size: 12px !important;
     }
 
 }

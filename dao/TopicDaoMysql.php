@@ -70,7 +70,7 @@ class TopicDaoMysql implements TopicDao{
         $pageOffset = 0;
 
         if(is_numeric($page)){
-            $pageOffset = ceil(($page - 1) * 3);
+            $pageOffset = ceil(($page - 1) * $perPage);
         }
        
         if(!isset($pageOffset) || $pageOffset < 0){
@@ -92,14 +92,25 @@ class TopicDaoMysql implements TopicDao{
             }
         }
 
-        $stmt = $this->pdo->query("SELECT * FROM topics");
-
-        $allTopics = count($stmt->fetchAll(PDO::FETCH_ASSOC));
-        $numPages = ceil($allTopics / $perPage);
-
+        $numPages = $this->CountAllTopics($perPage);
         $topicsInfo['pages'] = $numPages;
 
         return $topicsInfo;
+    }
+
+    public function CountAllTopics($perPage, $search=false){
+
+        if($search){
+            $stmt = $this->pdo->prepare("SELECT * FROM topics WHERE body LIKE :search");
+            $stmt->bindValue(":search", "%" . $search . "%");
+        }else{
+            $stmt = $this->pdo->prepare("SELECT * FROM topics");
+        }
+        $stmt->execute();
+
+        $allTopics = count($stmt->fetchAll(PDO::FETCH_ASSOC));
+        $numPages = ceil($allTopics / $perPage);
+        return $numPages;
     }
 
     public function findById($id){
@@ -146,6 +157,59 @@ class TopicDaoMysql implements TopicDao{
 
         $stmt->bindValue(":id",$id);
         $stmt->execute();
+    }
+
+    public function searchTopics($search, $page=1){
+
+
+        $perPage = 5;
+        $pageOffset = ($page - 1) * $perPage;
+
+        $stmt = $this->pdo->prepare("SELECT * FROM topics WHERE body LIKE :search ORDER BY created_at DESC LIMIT :page, :perPage");
+        $stmt->bindValue(":search", "%" . $search . "%");
+        $stmt->bindValue(":page", $pageOffset, PDO::PARAM_INT);
+        $stmt->bindValue(":perPage", $perPage,  PDO::PARAM_INT);
+        $stmt->execute();
+
+        $topicsInfo = [];
+        $topicsInfo['topics'] = [];
+
+        if($stmt->rowCount() > 0){
+
+            $data = $stmt->fetchAll();
+            foreach($data as $topicItem){
+                $topic = $this->buildTopic($topicItem);
+                $topicsInfo['topics'][] = $topic;
+            }
+        }
+
+        $numPages = $this->countAllTopics($perPage, $search);
+        $topicsInfo['pages'] = $numPages;
+        return $topicsInfo;
+    }
+
+    public function findByCategory($category=false){
+
+        if($category){
+            $stmt = $this->pdo->prepare("SELECT * FROM topics WHERE category=:category");
+            $stmt->bindValue(":category",$category);
+        }else{
+            $stmt = $this->pdo->prepare("SELECT * FROM topics");
+        }
+        $stmt->execute();
+
+        $topics = [];
+
+        if($stmt->rowCount() > 0){
+
+            $data = $stmt->fetchAll();
+            foreach($data as $topicItem){
+                $topic = $this->buildTopic($topicItem);
+                $topics[] = $topic;
+            }
+        }
+
+        return $topics;
     }
 
 }

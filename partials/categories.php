@@ -16,7 +16,7 @@ $categories = $categoryDao->returnCategories($limitNumCategories);
 
         <?php foreach($categories as $category):?>
             <li class="nav-item">
-                <a href="<?=$base?>categories.php?id=<?=$category->id?>" class="nav-link"><i class="bi bi-play-fill"></i><?=$category->name?></a>
+                <a href="<?=$base?>categories.php?category=<?=$category->name?>" class="nav-link"><i class="bi bi-play-fill"></i><?=$category->name?></a>
             </li>
         <?php endforeach?>
 

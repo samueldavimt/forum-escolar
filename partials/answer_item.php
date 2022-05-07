@@ -29,7 +29,8 @@
         </div>
 
         <span class="topic-item-states">
-            <span><i class="bi bi-clock-fill"></i><?=$answerItem->replyDate()?></span>
+            <i class="bi bi-clock-fill"></i>
+            <span><?=$answerItem->replyDate()?></span>
         </span>
     </div>
 
